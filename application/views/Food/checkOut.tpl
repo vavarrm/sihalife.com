@@ -110,5 +110,6 @@
 		<{include file="frontend/footer.tpl"}>
 	</div>
     <!-- /.container -->
+	<{include file="frontend/js.tpl"}>
 </body>
 </html>

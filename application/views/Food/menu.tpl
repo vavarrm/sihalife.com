@@ -17,16 +17,15 @@
 	<div class="wrap">
 		<div id="sidebar">
 			<div id="cart">
-				<div class="header">購物車</div>
 				<div class="middle">
-					<div>您的購物車中有 0 件商品</div>
 					<div>
-						<a type="button"  href="/Food/shopCar" class="btn btn-default"><{$foodLanguageAry.food_menu_check}></a>
+						<a href="/Food/checkOut" class="btn btn-default">
+						<{$foodLanguageAry.food_menu_check_out}>
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		
 		<div class="menu">
 			<div class="mini-menu">
 				<ul>
@@ -44,7 +43,7 @@
 					<{/foreach}>
 				</ul>
 			</div>
-			
+			<{*
 			<div class="menu-colors menu-item">
 				<div class="header-item" >Colors</div>
 				<ul class="color-row1">
@@ -62,7 +61,6 @@
 					<li class="color-circle" style="background:#923476"></li>
 				</ul>
 			</div>
-			
 			<div class="menu-size menu-item">
 				<div class="header-item" ><{$foodLanguageAry.food_menu_size}></div>
 				<ul class="color-row1">
@@ -73,6 +71,7 @@
 					<li class="color-circle size-circle" ><p class="sizedouble">XL</p></li>
 				</ul>
 			</div>
+			*}>
 			<div class="menu-price menu-item">
 				<div class="header-item" ><{$foodLanguageAry.food_menu_price}></div>
 				<p>
@@ -81,7 +80,18 @@
 				</p>
 				<div id="slider-range"></div>
 			</div>
-			
+			<{*
+			<div class="menu-price menu-item shopcar-list ">
+				<div class="header-item" ><{$foodLanguageAry.food_menu_shopcar}></div>
+				<p>
+					<!--<label for="amount">Price range:</label>-->
+					<input type="text" readonly id="amount"  style="border:0; color:#f6931f; font-weight:bold;">
+				</p>
+				<div >
+					<button type="button" class="btn btn-default"></button>
+				</div>
+			</div>
+			*}>
 		</div>
 		
 		<div class="items">
@@ -94,7 +104,7 @@
 							<p class="descroption"><{$row.food_description}></p>
 							<h5>
 								$<{$row.food_us_price}>
-								<input type="number"  style="width: 40px; padding: 1px" min="0"  max="99" value="0"> 
+								<{*<input type="number"  style="width: 40px; padding: 1px" min="0"  max="99" value="0"> *}>
 								<button type="button"  data-price="<{$row.food_us_price}>" class="btn  btn-block addCar"><{$foodLanguageAry.food_menu_addcar}></button>								
 							</h5>
 						</div>
@@ -117,6 +127,7 @@
 	{
 		var shopCar =[];
 		var temp_ary =[];
+		$('.shopcar-list').hide();
 		<!-- $.cookie('shopCar', '' , { path: '/' });	 -->
 		if( $.cookie('shopCar'))
 		{  
@@ -125,11 +136,10 @@
 				if (typeof e === 'string') {
 					temp_ary.push((JSON.parse(e))); 
 				}
-				
+				$('.shopcar-list').show();
 			})
 			shopCar = cookie_temp;   
 		} 
-		 console.log(shopCar); 
         $(".sub > a").click(function() {
             var ul = $(this).next(),
                     clone = ul.clone().css({"height":"auto"}).appendTo(".mini-menu"),
@@ -173,10 +183,8 @@
 			};
 			shopCar.push(JSON.stringify(menu_obj));
 			$.cookie('shopCar', escape(shopCar.join('|')));
-			<!-- console.log(unescape($.cookie('shopCar'))); -->
-			<!-- var cookie_temp = unescape($.cookie('shopCar')).split('|'); -->
-			<!-- console.log(cookie_temp); -->
 			
+			$('.shopcar-list').slideDown( "slow" );
 		})
 	});
 	

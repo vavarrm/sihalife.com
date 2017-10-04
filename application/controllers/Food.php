@@ -55,12 +55,12 @@ class Food extends CI_Controller {
 		$this->smarty->display(__CLASS__.'/menu.tpl');
 	}
 	
-	public function shopCar()
+	public function checkOut()
 	{
 		$this->smarty->assign(array(
 			'foodLanguageAry'	=>$this->food_language_ary,
 		));
-		$this->smarty->display(__CLASS__.'/shopCar.tpl');
+		$this->smarty->display(__CLASS__.'/checkOut.tpl');
 	}
 	
 	public function shopInfo()
