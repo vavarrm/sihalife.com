@@ -122,23 +122,16 @@
 	<{include file="frontend/js.tpl"}>
 </body>
 </html>
-  <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () 
 	{
 		var shopCar =[];
-		var temp_ary =[];
+	
 		$('.shopcar-list').hide();
-		<!-- $.cookie('shopCar', '' , { path: '/' });	 -->
 		if( $.cookie('shopCar'))
 		{  
-			var cookie_temp = unescape($.cookie('shopCar')).split('|');
-			$.each(cookie_temp,function(i,e){
-				if (typeof e === 'string') {
-					temp_ary.push((JSON.parse(e))); 
-				}
-				$('.shopcar-list').show();
-			})
-			shopCar = cookie_temp;   
+			shopCar = getCookieJson();   
+			$('.shopcar-list').show();
 		} 
         $(".sub > a").click(function() {
             var ul = $(this).next(),
@@ -218,7 +211,4 @@
 		return price >= minPrice && price <= maxPrice;
       }).show();
 	}
-	
-
-	
 </script>

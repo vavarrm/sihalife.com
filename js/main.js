@@ -1,3 +1,18 @@
+function getCookieJson ()
+{
+		var temp_ary =[];
+		var cookie_temp = unescape($.cookie('shopCar')).split('|');
+		$.each(cookie_temp,function(i,e){
+			if (typeof e === 'string') {
+				var obj = JSON.parse(e);
+				console.log(obj);
+				temp_ary.push(obj); 
+			}
+			
+		})
+		return temp_ary; 
+}
+
 $(function() {
 	
     // $( "#dialog" ).dialog();

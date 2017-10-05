@@ -57,8 +57,9 @@ class Food extends CI_Controller {
 	
 	public function checkOut()
 	{
+		$this->checkout_language_ary = $this->language->load('checkout');
 		$this->smarty->assign(array(
-			'foodLanguageAry'	=>$this->food_language_ary,
+			'checkoutLanguageAry'	=>$this->checkout_language_ary,
 		));
 		$this->smarty->display(__CLASS__.'/checkOut.tpl');
 	}
